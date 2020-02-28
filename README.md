@@ -1,7 +1,7 @@
 # people
 CRUD Spring Boot + JSF + Primefaces
 
-# itens antendidos no desafio ténico:
+# Itens antendidos no desafio ténico:
 - item A: Criar uma aplicação java web utilizando JavaServer Faces (JSF);
 - item B: Utilizar persistência em um banco de dados (qualquer banco desejado);
 - item C: Utilizar Hibernate e JPA;
@@ -10,7 +10,22 @@ CRUD Spring Boot + JSF + Primefaces
 
 Desenvolvi um CRUD de pessoas, pois não consegui acessar o link que foi disponibilizado para verificar o modelo em questão, também implementei uma autenticação para acesso ao sistema (Usuário: admin, senha: admin).
 
-Para executar é necessário restaurar o DUMP do banco de dados Mysql 6.. e em seguida baixar o projeto numa IDE (eclipse por exemplo), rodar como java Application o arquivo "Application.java" que se encontra no pacote "br.com.peopleregisted".
-acessar pelo link "http://localhost:8080/login".
+Utilizei o banco h2, pois é um banco escrito em java e roda em tempo de execução. 
 
-Também pode ser gerado o .jar e executado na no prompt do windows.
+Para acessar o sistema é necessário executar o seguinte comando, pois enviei o sistema compilado:
+
+>> java -jar people.jar
+
+Posterior a isto acessar o link "http://localhost:8080/login".
+
+# Credenciais para acesso ao sistema:
+Usuário: admin
+Senha: admin
+
+
+# Docker
+Também fiz uma stack com docker, nele tem um banco mysql e o sistema executar ao subir o container, para isto basta acessar a pasta onde se encontra o arquivo "docker-compose.yml" e executar o seguinte comando:
+
+>> docker-compose up
+
+Pré requisto: ter o doker instalado na máquina.

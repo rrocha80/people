@@ -1,0 +1,77 @@
+version: '3.7'
+
+
+# Subir toda a stack
+# docker-compose up
+
+# Derrubar a stack 
+# docker-compose down
+# docker-compose down -v (destruindo os volumes)
+
+# Recompilar imagems locais (no caso app) (fazer isso quando tiver nova versão do JAR)
+# docker-compose build --no-cache
+
+
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    restart: always
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/dbpeopleregisted?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 1234
+      
+    # Obs: A própria aplicação, ao subir, está criando as tabelas do banco de dados "dbpeopleregisted" e populando-o.
+    # Criação das tabelas: application.properties >>> spring.jpa.hibernate.ddl-auto=update
+    # Obs: Uma outra opção seria spring.jpa.hibernate.ddl-auto=none e criar as tabelas via arquivo  peopleregisted/src/main/resources/schema.sql
+    # Ref: https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto-database-initialization
+    # Dados para popular: peopleregisted/src/main/resources/data.sql
+
+    # docker exec -it people_db_1 mysql -u root -p1234 --database dbpeopleregisted -e "SHOW TABLES;"
+    # docker exec -it people_db_1 mysql -u root -p1234 --database dbpeopleregisted -e "INSERT INTO `pessoa` VALUES (1,'Rodrigo Rocha','MASCULINO','rodrigo@gmail.com','1980-04-02','BRASIL','Natal','756.348.600-32','2020-02-26 08:50:07','2020-02-26 08:49:54'),(3,'Lucas','masc','','2020-02-02','','','033.969.494-71','2020-02-26 00:33:04','2020-02-26 00:32:56'),(9,'Giovany Lyan','MASCULINO','lyan@gmail.com','2010-03-04','BRASIL','Natal','036.371.150-34','2020-02-26 08:25:34','2020-02-26 08:25:28'),(13,'','','','2020-02-01','','','','2020-02-26 08:47:51',NULL);"   
+    # healthcheck:
+      # test: "/usr/bin/mysql --user=root --password=you_pass --database=your_db --execute \"SELECT * FROM last_table_of_your_dump;\""
+      # interval: 10s
+      # timeout: 3s
+      # retries: 10
+     #volumes:
+      #- ${PWD}/src/others/Dump20200226.sql:/tmp/init.sql
+      
+      
+  db:
+    image: mysql:5.7
+    # Rodar mais de um commando no docker-compose. Obs: Se não tiver "bash" use "sh".
+    # command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    #command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - "3306:3306"
+    restart: always
+    environment:
+      MYSQL_DATABASE: dbpeopleregisted
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 1234
+      MYSQL_ROOT_PASSWORD: 1234
+    volumes:
+      - db-data:/var/lib/mysql   
+      # 
+      # Aqui o que deve ser mapeado é a pasta. Mapeando seguindo esta padrão, todos os scripts
+      # presentes na pasta "docker-entrypoint-initdb.d" serão executados.
+      # Se preferir pode mapear diretamente o script, mas elem tem que estar dentro da pasta
+      # "docker-entrypoint-initdb.d".
+      # Ref:
+      # https://stackoverflow.com/questions/42136931/docker-compose-mysql-import-sql
+      # https://stackoverflow.com/questions/53249276/docker-compose-mysql-init-sql-is-not-executed
+      # https://stackoverflow.com/questions/36617682/docker-compose-mysql-import-sql
+      # https://hub.docker.com/_/mysql
+      # https://stackoverflow.com/questions/39388877/adding-files-to-standard-images-using-docker-compose
+      #- ${PWD}/src/others:/docker-entrypoint-initdb.d
+      #
+      
+volumes:
+  db-data:
