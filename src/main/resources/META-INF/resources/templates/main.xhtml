@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jsp/jstl/core" 
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    lang="pt-BR">
+    
+<c:set scope="request" value="#{facesContext.viewRoot.viewId.split(initParam['javax.faces.DEFAULT_SUFFIX'])[0]}" var="currentview"/>
+<c:set scope="application" value="#{facesContext.externalContext.requestContextPath}" var="path"/>
+<h:head>
+    <link rel="shortcut icon" href="#{resource['images:favicon.ico']}" type="img/x-icon" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta content="TJRN Sistemas" name="description" />
+    <h:outputStylesheet library="css" name="ui.css"/>    
+    <h:outputStylesheet library="css" name="datatable.css"/>
+    <h:outputStylesheet library="css" name="messages.css"/>
+    <h:outputStylesheet library="css" name="sistemas.css"/>
+    <h:outputStylesheet library="css" name="menu-styles.css"/>  
+    <h:outputStylesheet library="css" name="themes/blue.css"/><!-- tema utilizado -->
+    <h:outputStylesheet library="css" name="extra.css"/><!-- utilizado para classes de estilos específicas do sistema -->
+    
+    <h:outputScript library="js" name="menu-styles.js" target="head" />
+    <h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
+    
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            jQuery('#pesquisa input[type="text"]').bind({
+                focusin: function() {
+                    var inputSearch = jQuery(this).val();
+                    if (inputSearch == '' || inputSearch == 'Pesquisar') {
+                        jQuery(this).attr('value', '');
+                    }
+                },
+                focusout: function() {
+                    var inputSearch = jQuery(this).val();
+                    if (inputSearch == '' || inputSearch == 'Pesquisar') {
+                        jQuery(this).attr('value', 'Pesquisar');
+                    }
+                }
+            });
+        });
+    </script>
+    
+    <ui:insert name="head" />
+</h:head>
+
+<h:body>
+    <div id="container">
+        <ui:insert name="header">
+            <ui:include src="/includes/header.xhtml" />
+        </ui:insert>
+
+        <div id="centro">
+            <ui:include src="/includes/messages.xhtml" />
+            <ui:insert name="centro">Body</ui:insert>
+        </div>
+        <!-- #centro -->
+        <div id="rodape">
+            <ui:insert name="footer">
+                <ui:include src="/includes/footer.xhtml" />
+            </ui:insert>
+        </div>
+        <!-- #rodape -->
+    </div>
+    <!-- #container -->
+
+    <p:confirmDialog global="true" closeOnEscape="true" modal="true">
+        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+    </p:confirmDialog>
+
+</h:body>
+</html>

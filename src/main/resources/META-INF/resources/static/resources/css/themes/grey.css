@@ -1,0 +1,168 @@
+/* Estilo cinza de tema 1.0
+ *
+ * Copyright (c) 2011, Tribunal de Justiça do RN. 
+ * Todos os direitos reservados.
+ */
+
+body {  /* - Cor de fundo do sistema - */
+    background: #777777;
+}
+body.index { /* - Imagem de fundo do login - */
+    background: url("#{resource['images/themes/grey:top-bg.gif']}") no-repeat 0 0px #FFFFFF;
+}
+
+a, a:active { /* - Cor do link ativo - */
+    color: #777777;
+}
+
+h3 {
+    color: #777777;
+}
+
+h4 {
+    color: #777777;
+}
+
+input[type="submit"], .ui-button,
+.ui-dialog-titlebar-close,
+.ui-dialog-titlebar-close.ui-state-hover  { /* - Imagem de fundo do botão e título do Dialog - */
+    background: url("#{resource['images/themes/grey:bg-menu.gif']}") repeat-x 0 0 #777777 !important;
+}
+
+input[type="submit"]:hover, .ui-button:hover { /* - Cor de fundo do botão - */
+    background: #000 !important;
+}
+
+/* BARRA DO TRIBUNAL */
+#barra_tribunal { /* - Cor de fundo da barra superior do sistema - */
+    background: #000000;
+}
+
+#barra_tribunal a:hover {
+    color: #CCC;
+}
+
+/* TOPO */
+#topo { /* - imagem do cabeçalho  - */
+    background: url("#{resource['images/themes/grey:fundo-logo.gif']}") no-repeat 5% 0 #777777;
+
+}
+
+h1 span {
+    color: #fff;
+
+}
+
+#pesquisa input[type="submit"] {
+    background: url("#{resource['images/themes/grey:bg-menu.gif']}") repeat-x 0 0 #777777;
+
+}
+
+ /* MENU (NOVO) */
+#menu {
+    padding-left: 20px !important;
+    background: #777777 !important;
+}
+
+#menu ul ul li a {
+  color: white !important;
+  background: #777777 !important;
+}
+
+#menu ul ul li:hover > a,
+#menu ul ul li.active > a {
+  color: #202020 !important;
+}
+
+#menu > ul > li > ul::after {
+  border-bottom-color: #777777;
+}
+
+#menu ul ul ul::after {
+  border-right-color: #777777;
+}
+
+/*SUPERIOR*/
+
+#superior a:hover, #superior input[type="submit"]:hover,
+#superior a.menu-ativo, #superior input[type="submit"].menu-ativo { /* - Cor da borda do botão superior (apenas para layout uma coluna) - */
+    border: 1px solid #777777 !important; 
+}
+
+/* CONTEÚDO */
+
+#breadcrumbs a:hover {
+    color: #333333;
+}
+
+
+/* DIREITA */
+
+#direita a, #direita input[type="submit"] {
+    color: #777777 !important;
+}
+
+/* RODAPÉ */
+#rodape { /* - Cor de fundo do rodapé - */
+    background: #777777;
+}
+
+#rodape p {
+    color: #FFF;
+
+}
+
+#rodape li a { /* - Cor do separador - */
+    border-right: 1px solid #FFF;
+}
+
+/* TABELAS */
+table.tabela th,
+div.tabela table th { /* - Imagem do cabeçalho da tabela - */
+    background: url("#{resource['images/themes/grey:bg-menu.gif']}") repeat-x 0 0;
+    color: #FFF !important;
+}
+
+.tabela td.acoes button { /* - Cor do botão de ações (excluir/alterar/outros) - */
+    color: #777777 !important;
+}
+
+.tabela td.acoes button:hover span,
+.tabela td.acoes button.ui-state-hover span {
+    color:#000 !important;
+}
+
+/* CLASSES */
+
+.aviso, .ui-messages-warn, body .ui-message-warn {
+    background: #FEEFB4;
+    border: 1px dotted #986200;
+    color: #986200 !important;
+}
+.erro, .ui-message-error, body .ui-message-error {
+    background: #FFBBBC;
+    border: 1px dotted #DB0912;
+    color: #DB0912 !important;
+}
+.info, .ui-messages-info, body .ui-message-info {
+    background: #BDE6FA;
+    border: 1px dotted #0152A3;
+    color: #0152A3 !important;
+}
+
+#pagina input[type="password"], #pagina input[type="text"] {
+    color: #7B7B7B;
+}
+
+/* PRIMEFACES */
+.ui-state-default .ui-icon { background-image: url("#{resource['images/ui:ui-icons_888888_256x240.png']}"); } /* - icones do tema - */
+
+.ui-state-hover .ui-icon, .ui-state-focus .ui-icon {background-image: url("#{resource['images:ui/ui-icons_222222_256x240.png']}"); } /* - icones do tema HOVER - */
+
+.ui-widget-header {background: url("#{resource['images/themes/grey:bg-menu.gif']}") repeat-x 0 0;} /* - imagem de fundo do cabeçalho (dialogs, tabs e etc...) - */
+
+.ui-datatable .ui-icon, .ui-datatable a {color: #777777;} /* - cor de links no datable - */
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {color: #777777;}
+
+.ui-paginator .ui-state-default .ui-icon {background-image: url("#{resource['images:ui/ui-icons_888888_256x240.png']}");} /* - icones do paginador - */

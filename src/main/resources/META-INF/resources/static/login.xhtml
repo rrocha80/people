@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jsp/jstl/core" 
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:sec="http://www.springframework.org/security/tags"
+    lang="pt-BR">
+<h:head>
+    <title>#{cfg['app.name']} - Login</title>
+    <sec:authorize access="isAuthenticated()">
+        <meta http-equiv="Refresh" content="0;url=#{path}" />
+    </sec:authorize>
+    <link rel="shortcut icon" href="#{resource['images:favicon.ico']}" type="img/x-icon" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta content="TJRN Sistemas" name="description" />
+    <h:outputStylesheet library="css" name="ui.css" />
+    <h:outputStylesheet library="css" name="sistemas.css" />
+    <h:outputStylesheet library="css" name="messages.css" />
+    <!-- Tema utilizado -->
+    <h:outputStylesheet library="css" name="themes/blue.css" />
+    <h:outputStylesheet library="css" name="extra.css" />
+</h:head>
+<h:body styleClass="index">
+
+    <div id="pagina">
+        <h:panelGroup styleClass="ui-messages ui-widget" layout="block"
+            rendered="#{param.fail != null and SPRING_SECURITY_LAST_EXCEPTION != null}">
+            <div class="ui-messages-error ui-corner-all">
+                <h:outputText styleClass="ui-messages-error-summary" value="#{SPRING_SECURITY_LAST_EXCEPTION.message}" />
+            </div>
+        </h:panelGroup>
+
+        <h:outputText value="#{environmentBean.msgAlertaAmbienteAplicacao}" styleClass="msg aviso"
+            rendered="#{environmentBean.msgAlertaAmbienteAplicacao != null}" />
+
+        <div id="logoSistema">
+            <img src="#{resource['images:logoSistema.png']}" width="213" height="100" />
+            <p style="color: #FFF; margin-top: 5px">
+                Versão
+                <h:outputText value="#{cfg['app.version.number']}" />
+            </p>
+            <p style="color: #FFF;">
+                (
+                <h:outputText value="#{cfg['app.version.date']}" />
+                )
+            </p>
+        </div>
+
+        <div class="painelLogin">
+            <div class="painelTitulo">
+                <span>LOGIN</span>
+            </div>
+
+            <form action="#{facesContext.externalContext.requestContextPath}/security_check" method="post" class="login-form">
+
+                <div class="user">
+                    <h:panelGrid columns="2">
+                        <h:column>
+                            <img src="#{resource['images:ico_user.png']}" width="24" height="24" />
+                        </h:column>
+                        <h:column>
+                            <input tabindex="1" id="j_username" name="j_username" type="text" class="pq" value="Informe o usuário"
+                                onfocus="this.value = ''" />
+                        </h:column>
+                    </h:panelGrid>
+                </div>
+
+                <div class="pass">
+                    <h:panelGrid columns="2">
+                        <h:column>
+                            <img src="#{resource['images:ico_chave.png']}" width="24" height="24" />
+                        </h:column>
+                        <h:column>
+                            <input tabindex="2" id="j_password" name="j_password" type="password" class="pq" value="Informe a senha"
+                                onfocus="this.value = ''" />
+                        </h:column>
+                    </h:panelGrid>
+                </div>
+
+                <ui:remove>
+                    <div class="duvidaLogin">
+                        <h:panelGrid columns="2">
+                            <h:column>
+                                <a href="#"><img src="#{resource['images:help.png']}" width="32" height="32" /></a>
+                            </h:column>
+                            <h:column>
+                                <a href="#">Esqueceu a senha</a>
+                            </h:column>
+                        </h:panelGrid>
+                    </div>
+                </ui:remove>
+
+                <div class="botaoLogin">
+                    <input tabindex="3" type="submit" value="Entrar" />
+                </div>
+            </form>
+
+        </div>
+
+
+        <div class="logoTribunalLogin">
+            <a href="http://h-intranet.intrajus.tjrn/" title="Tribunal de Justiça do Estado do Rio Grande do Norte"><img
+                src="#{resource['images:top-logo.png']}" width="63" height="80" /></a> <br></br> <span>Tribunal de Justiça do Rio Grande do
+                Norte</span>
+        </div>
+
+    </div>
+</h:body>
+</html>

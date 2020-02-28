@@ -1,0 +1,75 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<div id="menu">
+		<ul>
+		<ui:remove>
+			<li><a href="#{path}/"><span>Início</span></a></li>
+				<li><h:link outcome="/pages/escala/escala" title="Escala"
+						value="Escala" /></li>
+
+				<li><h:link outcome="/pages/plantao/plantao" title="Plantão"
+						value="Plantão" /></li>
+
+				<li class="has-sub"><a href="#"><span>Parâmetros</span></a>
+					<ul>
+						<li><h:link outcome="/pages/horario/horario" title="Horários"
+								value="Horários" /></li>
+						<li class="last"><h:link
+								outcome="/pages/medidaurgente/medidaurgente"
+								title="Medidas Urgêntes" value="Medidas Urgentes" /></li>
+						<li class="last"><h:link
+								outcome="/pages/tipoarquivo/tipoarquivo"
+								title="Tipos de Arquivos" value="Tipos de Arquivos" /></li>
+					</ul></li>
+			
+					<li><h:link outcome="/pages/contato/contato"
+							title="Tipos de Contato" value="Contatos" /></li>
+					access="hasAnyRole('OP_TIPO_CONTATO_LER', 'OP_TIPO_CONTATO_INCLUIR', 'OP_TIPO_CONTATO_ALTERAR', 'OP_TIPO_CONTATO_EXCLUIR')">
+					<li class="last"><h:link
+							outcome="/pages/tipocontato/tipocontato" title="Tipos de Contato"
+							value="Tipos de Contato" /></li>
+
+				<li><h:link title="Menu 4"
+						value="Menu 4 Cadastro Com Descrição Grande" /></li>
+				<li><h:link title="Menu 5" value="Menu 5" /></li>
+				<li><h:link title="Menu 6" value="Menu 6" /></li>
+				<li><h:link title="Menu 7" value="Menu 7" /></li>
+				<li><h:link title="Menu 8" value="Menu 8" /></li>
+				<li><h:link title="Menu 9" value="Menu 9" /></li>
+				<li class="last"><h:link title="Menu 10" value="Menu 10" /></li>
+			</ui:remove>
+
+
+			<ui:remove>
+					<li class="has-sub"><a href="#"><span>Pessoas</span></a>
+						<ul>
+							<li><h:link outcome="/pages/pessoa/pessoa" title="Pessoas"
+									value="Cadastro / Consulta" /></li>
+							<li class="last"><h:link outcome="/pages/agenda/agenda"
+									title="Agenda" value="Agenda" /></li>
+						</ul></li>
+
+					<li><h:link outcome="/pages/contato/contato"
+							title="Tipos de Contato" value="Contatos" /></li>
+
+					<li class="last"><h:link
+							outcome="/pages/tipocontato/tipocontato" title="Tipos de Contato"
+							value="Tipos de Contato" /></li>
+
+					<li><h:link outcome="/pages/tipouo/tipouo" title="Tipos de Uo"
+							value="Tipos de Uo" /></li>
+
+					<li><h:link outcome="/pages/uo/uo" title="Uo" value="Uo" /></li>
+
+
+				<li class="last"><h:link outcome="/pages/testprime/tree"
+						title="Tree" value="Tree" /></li>
+
+			</ui:remove>
+		</ul>
+	</div>
+
+</ui:composition>

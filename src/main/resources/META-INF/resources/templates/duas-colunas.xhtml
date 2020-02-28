@@ -1,0 +1,28 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    template="main.xhtml"
+    xmlns:h="http://java.sun.com/jsf/html">
+    
+    <ui:define name="centro">
+        <h:panelGroup id="mainBody" layout="block">
+
+            <div id="breadcrumbs">
+                <ui:insert name="breadcrumbs" />
+            </div>
+            <!-- #breadcrumbs -->
+
+            <div id="conteudo">
+                <a href="#iniciodoconteudo" id="iniciodoconteudo" accesskey="2" title="Início do conteúdo" class="texto-oculto">Início do
+                    conteúdo</a>
+                <ui:insert name="conteudo" />
+                <a href="#finaldoconteudo" id="finaldoconteudo" title="Final do conteúdo" class="texto-oculto">Final do conteúdo</a>
+            </div>
+            <!-- #conteudo -->
+        </h:panelGroup>
+        <div id="direita">
+            <ui:insert name="direita" />
+        </div>
+        <!-- #direita -->
+    </ui:define>
+    
+</ui:composition>

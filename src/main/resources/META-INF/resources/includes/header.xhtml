@@ -1,0 +1,90 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui">
+
+    <ui:insert name="header_title">
+        <title><ui:insert name="title">#{cfg['app.name']}</ui:insert></title>
+    </ui:insert>
+
+    <p:notificationBar position="top" effect="slide" styleClass="top" widgetVar="bar">
+        <h:panelGrid cellpadding="0" cellspacing="0" columns="2" style="font-size:11px;" onclick="PF('bar').hide()">
+            <h:panelGrid>
+                <img src="#{resource['images:caveira.jpg']}" />
+            </h:panelGrid>
+
+            <h:panelGrid style="padding-left:10px">
+                <h4>Configuração (Ambiente de #{cfg['app.environement']}):</h4>
+                <p>
+                    <strong>Versão:</strong> #{cfg['app.version.number']} | #{cfg['app.version.date']} | #{cfg['app.code']} | #{cfg['app.name']}
+                </p>
+                <p>
+                    <strong>Banco de Autorização:</strong> #{cfg['db.auth.url']} | #{cfg['db.auth.user']} | #{cfg['db.auth.password']}
+                </p>
+                <p>
+                    <strong>Banco da Aplicação:</strong> #{cfg['db.auth.url']} | #{cfg['db.app.user']} | #{cfg['db.app.password']}
+                </p>
+                <p>
+                    <strong>Active Directory:</strong> #{cfg['auth.ldap.host']} | #{cfg['auth.ldap.port']} | #{cfg['auth.ldap.root']} |
+                    #{cfg['auth.ldap.user']} | #{cfg['auth.ldap.password']} | #{cfg['auth.ldap.userPrincipalName']}
+                </p>
+                <p>
+                    <strong>Log:</strong> #{log['log4j.rootLogger']}
+                </p>
+            </h:panelGrid>
+        </h:panelGrid>
+    </p:notificationBar>
+
+    <div id="barra_tribunal">
+        <div id="info">
+                <ul>
+
+                    <li>Sessão expira em: <b><span id="minutes_left"></span>m<span id="seconds_left"></span>s</b>
+                    </li>
+
+                        <li><a href="#" title="Dados da Aplicação" onclick="PF('bar').show()">Dados da Aplicação</a></li>
+
+                   
+                    <li><a href="#{path}/logout" title="Sair">Sair</a></li>
+                </ul>
+
+                
+        </div>
+    </div>
+
+    <div id="topo">
+        <div id="cabecalhoEsquerda">
+            <h1>
+                <h:outputLink accesskey="3" value="#{path}/" title="#{cfg['app.name']}">#{cfg['app.name']}</h:outputLink>
+                <span>e-sig - Software e Consultoria</span>
+            </h1>
+        </div>
+        <div id="cabecalhoDireita">
+            <img src="#{resource['images:logoSistema.png']}" width="130" height="70" />
+        </div>
+
+        <ul class="bloco-oculto">
+            <li><a href="#iniciodomenu" title="Menu [1]">Menu [1]</a></li>
+            <li><a href="#iniciodoconteudo" title="Conteúdo [2]">Conteúdo [2]</a></li>
+            <li><h:link accesskey="3" outcome="/index" title="Página Inicial [3]" value="Página Inicial [3]" /></li>
+            <li><a href="#pesquisa" title="Pesquisa [4]">Pesquisa [4]</a></li>
+        </ul>
+
+        <ui:remove>
+            <div id="pesquisa">
+                <h:form>
+                    <label class="texto-oculto">Pesquisar</label>
+                    <h:outputLabel styleClass="texto-oculto" value="Pesquisar" />
+                    <h:inputText value="Pesquisar" accesskey="4" />
+                    <h:commandButton value="Ir" />
+                </h:form>
+            </div>
+        </ui:remove>
+
+    </div>
+    <ui:insert name="menu">
+        <ui:include src="/includes/menu.xhtml" />
+    </ui:insert>
+</ui:composition>

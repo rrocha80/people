@@ -1,0 +1,59 @@
+<ui:composition template="/templates/uma-coluna.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:define name="superior">
+        
+            <h:form id="frmInnerMenuSuperior" prependId="false">
+                <ul>
+                   
+                    <!-- Menu com opções específicas | Comentar caso não seja usado  -->
+                    <ui:remove>
+                        <li><img src="#{resource['images:marcador.png']}" /></li>
+    
+                        <li><a class="menuOpcoes" href="#">Outras Opções</a>
+                            <ul>
+                                <li><h:commandLink actionListener="#" title="Menu Item" value="Menu item" /></li>
+                                <li><h:commandLink actionListener="#" title="Menu Item" value="Menu item" /></li>
+                            </ul></li>
+                    </ui:remove>
+                    <!-- Fim do menu com opções específicas  -->
+                </ul>
+            </h:form>
+     
+    </ui:define>
+
+    <ui:define name="breadcrumbs">
+            <p>Você está em:</p>
+            <h:link outcome="/index" title="Página Inicial" value="Página Inicial" />
+            <h:link outcome="/pages/pessoa/pessoa" title="Pessoa"
+                value="Pessoa" />
+    
+           
+    </ui:define>
+
+    <ui:define name="conteudo">
+            <h:panelGroup id="pnlMain" layout="block">
+
+                    <h:panelGroup id="pnlForm" layout="block" >
+                        <ui:insert name="form">
+                            <ui:include src="/pages/pessoa/form.xhtml" />
+                        </ui:insert>
+                    </h:panelGroup>
+                    
+                    <h:panelGroup id="pnlList" layout="block" >
+                        <ui:insert name="list">
+                            <ui:include src="/pages/pessoa/list.xhtml" />
+                        </ui:insert>
+                    </h:panelGroup>
+                
+                    
+            </h:panelGroup>
+    </ui:define>
+
+    
+
+</ui:composition>
