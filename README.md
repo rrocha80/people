@@ -12,7 +12,7 @@ Desenvolvi um CRUD de pessoas, pois não consegui acessar o link que foi disponi
 
 Utilizei o banco h2, pois é um banco escrito em java e roda em tempo de execução. 
 
-Para acessar o sistema é necessário executar o seguinte comando, pois enviei o sistema compilado:
+Para acessar o sistema é necessário executar o seguinte comando, pois enviei o sistema compilado, o arquivo está na pasta "src\other":
 
 >> java -jar people.jar
 
@@ -24,7 +24,7 @@ Senha: admin
 
 
 # Docker
-Também fiz uma stack com docker, nele tem um banco mysql e o sistema executar ao subir o container, para isto basta acessar a pasta onde se encontra o arquivo "docker-compose.yml" e executar o seguinte comando:
+Também fiz uma stack com docker, nele tem um banco mysql e o sistema executar ao subir o container, para isto basta acessar a pasta onde se encontra o arquivo "docker-compose.yml" que se encontra na raiz do projeto e executar o seguinte comando:
 
 >> docker-compose up
 

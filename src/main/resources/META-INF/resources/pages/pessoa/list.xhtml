@@ -6,7 +6,7 @@
 	xmlns:tjrncc="http://java.sun.com/jsf/composite/util"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-	<p:panel id="pnlPesquisar" header="Pesquisar">
+	<p:panel id="pnlPesquisar" header="Pesquisar" visible="#{!pessoaController.modoEdicao}">
 		<h:panelGroup styleClass="busca" layout="block">
 			<h:form id="frmSearch">
 				<p:panel>
@@ -14,7 +14,7 @@
 						<h:panelGrid columns="3">
 
 							<h:outputLabel value="CPF" styleClass="input-label" for="cpf" />
-							<p:inputMask id="cpf" value="#{pessoaController.pessoa.cpf}" mask="999.999.999-99" />
+							<p:inputMask id="cpf" value="#{pessoaController.pessoaBusca.cpf}" mask="999.999.999-99" />
 
 						</h:panelGrid>
 					</f:validateBean>

@@ -7,9 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Pessoa {
@@ -19,8 +18,8 @@ public class Pessoa {
 	@Column(name = "id")
 	private Long id;
 
-	@Column(name = "nome", nullable = false)
-	@NotNull(message = "O campo NOME não pode ser vazio")
+	@NotBlank
+	@Column(name = "nome")
 	private String nome;
 
 	@Column(name = "sexo")
@@ -29,9 +28,7 @@ public class Pessoa {
 	@Column(name = "email")
 	private String email;
 
-	@Column(name = "data_nascimento", nullable = false)
-	@NotNull(message = "O campo DATA DE NASCIMENTO não pode ser vazia")
-	@JsonFormat(pattern = "YYYY-MM-dd")
+	@Column(name = "data_nascimento")
 	private Date dataNascimento;
 
 	@Column(name = "naturalidade")
@@ -41,15 +38,14 @@ public class Pessoa {
 	private String nacionalidade;
 
 	@Column(name = "cpf")
-	@NotNull(message = "O campo CPF não pode ser vazia")
+	@NotBlank
 	private String cpf;
 
 	@Column(name = "data_cadastro")
-	@JsonFormat(pattern = "YYYY-MM-dd HH:mm:ss")
+	@NotBlank
 	private Date dataCadastro;
 
 	@Column(name = "data_atualizacao")
-	@JsonFormat(pattern = "YYYY-MM-dd HH:mm:ss")
 	private Date dataAtualizacao;
 
 	// Get and Set

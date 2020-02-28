@@ -5,21 +5,23 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 	<h:form id="frmSave">
-		
+
 
 		<p:panel id="pnlForm" header="Cadastro">
 			<p:focus />
 			<h:panelGrid columns="1" cellpadding="10">
 
-				<span class="ui-float-label"> <p:outputLabel value="Nome" />
-					<p:inputText id="nome" value="#{pessoaController.pessoa.nome}" rendered="true" />
-					<p:message for="nome" />
-
+				<span class="ui-float-label"> 
+				<p:outputLabel value="Nome" />
+					<p:inputText id="nome" value="#{pessoaController.pessoa.nome}" size="50"
+						rendered="true" required="true" requiredMessage="O campo 'Nome' é obrigatório" /> 
+						<p:message for="nome" />
 				</span>
 
-				<span class="ui-float-label"> <p:outputLabel
-						value="Data de Nascimento" /> <p:datePicker id="dataNascimento"
-						value="#{pessoaController.pessoa.dataNascimento}" showIcon="true" />
+				<span class="ui-float-label"> 
+				<p:outputLabel value="Data de Nascimento" /> 
+				<p:datePicker id="dataNascimento"
+						value="#{pessoaController.pessoa.dataNascimento}" showIcon="true" required="true" requiredMessage="O campo 'Data de Nascimento' é obrigatório"/>
 					<p:message for="dataNascimento" />
 				</span>
 
@@ -28,13 +30,13 @@
 				</span>
 
 
-				<span class="ui-float-label"> <p:outputLabel value="CPF" /> <p:inputMask
-						id="cpf" value="#{pessoaController.pessoa.cpf}"
-						mask="999.999.999-99" /> <p:message id="cpf_message" for="cpf" />
+				<span class="ui-float-label"> <p:outputLabel value="CPF" />
+					<p:inputMask id="cpf" value="#{pessoaController.pessoa.cpf}"
+						mask="999.999.999-99" required="true" requiredMessage="O campo 'CPF' é obrigatório" /> <p:message id="cpf_message" for="cpf" />
 				</span>
 
 				<span class="ui-float-label"> <p:outputLabel value="e-mail" />
-					<p:inputText id="email" value="#{pessoaController.pessoa.email}" />
+					<p:inputText id="email" value="#{pessoaController.pessoa.email}" size="50" />
 				</span>
 
 				<span class="ui-float-label"> <p:outputLabel

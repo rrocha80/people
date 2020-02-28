@@ -4,11 +4,11 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -16,7 +16,8 @@ import org.springframework.data.domain.Example;
 import br.com.peopleregisted.model.Pessoa;
 import br.com.peopleregisted.repository.PessoaRepository;
 
-@Named
+
+@ManagedBean
 @ViewScoped
 public class PessoaController {
 
@@ -25,6 +26,7 @@ public class PessoaController {
 
 	private List<Pessoa> pessoaList;
 	private Pessoa pessoa = new Pessoa();
+	private Pessoa pessoaBusca = new Pessoa();
 	private boolean modoEdicao = false;
 
 	@PostConstruct
@@ -33,7 +35,7 @@ public class PessoaController {
 	}
 
 	public void salvar() {
-		if (pessoa.getDataAtualizacao() != null) {
+		if (pessoa.getId() == null) {
 			pessoa.setDataCadastro(new Date());
 		}
 		pessoaRepository.save(pessoa);
@@ -48,16 +50,17 @@ public class PessoaController {
 	}
 
 	public void buscar() {
-		if (pessoa.getCpf().replace(".", "").replace("-", "") == "") {
+		if (pessoaBusca.getCpf().replace(".", "").replace("-", "") == "") {
 			init();
 		} else {
-			Example<Pessoa> pessoaBuscarList = Example.of(pessoa);
+			Example<Pessoa> pessoaBuscarList = Example.of(pessoaBusca);
 			setPessoaList(pessoaRepository.findAll(pessoaBuscarList));
+			pessoaBusca = new Pessoa();
 		}
 	}
 
 	public void excluir(Pessoa pessoa) {
-		pessoaRepository.delete((long) pessoa.getId());
+		pessoaRepository.deleteById((long) pessoa.getId());
 		pessoaList.remove(pessoa);
 	}
 
@@ -95,6 +98,14 @@ public class PessoaController {
 
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
+	}
+
+	public Pessoa getPessoaBusca() {
+		return pessoaBusca;
+	}
+
+	public void setPessoaBusca(Pessoa pessoaBusca) {
+		this.pessoaBusca = pessoaBusca;
 	}
 
 }

@@ -1,32 +1,36 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:p="http://primefaces.org/ui"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-    
 
-   
+	<p:messages id="messages" showDetail="true" closable="true">
+		<p:autoUpdate />
+	</p:messages>
 
-    <ui:remove>
-        <!-- 
+
+	<ui:remove>
+		<!-- 
         	Removido temporariamente por problemas com o PrimeFaces 5.
         	Uma vez habilitado o codigo abaixo, o componente "p:autocomplete" nao funciona,
             pois nao consegue disparar o evento definido na propriedade "completeMethod".
          -->
-        <p:ajaxStatus id="statusUpdateOnAjaxRequest" onstart="statusDialog.show();" onsuccess="statusDialog.hide();" />
-    </ui:remove>
+		<p:ajaxStatus id="statusUpdateOnAjaxRequest"
+			onstart="statusDialog.show();" onsuccess="statusDialog.hide();" />
+	</ui:remove>
 
-    <p:dialog modal="true" widgetVar="statusDialog" draggable="false" resizable="false" closable="false" width="150" height="75"
-        styleClass="statusCarregando">
-        <p:graphicImage value="#{resource['images:ajax-loader.gif']}" />
-        <h:outputLabel value="Carregando..." styleClass="input-label-left" />
-    </p:dialog>
+	<p:dialog modal="true" widgetVar="statusDialog" draggable="false"
+		resizable="false" closable="false" width="150" height="75"
+		styleClass="statusCarregando">
+		<p:graphicImage value="#{resource['images:ajax-loader.gif']}" />
+		<h:outputLabel value="Carregando..." styleClass="input-label-left" />
+	</p:dialog>
 
 
 
 
-    <script type="text/javascript">
+	<script type="text/javascript">
     var time_left = null;
     var seconds_left = null;
     var minutes_left = null;
@@ -73,7 +77,7 @@
     time_clear_interval = setInterval('time_clear()', 0);
   </script>
 
-    <!-- 
+	<!-- 
       Esse ajuste se faz nececessário para evitar que a ordenação de pesquisas
       via colunas de um componente "p:datatable" não apresentem o erro do "eterno 
       carregamento" quando não há usuário autenticado. O log exibido é o seguinte: 
@@ -82,17 +86,22 @@
 
       Misael (2013-01-31)
 	-->
-        <p:ajaxStatus id="timerUpdateOnAjaxRequest" onstart="time_clear()" />
+	<p:ajaxStatus id="timerUpdateOnAjaxRequest" onstart="time_clear()" />
 
-    <h:form>
-        <p:dialog header="Sessão expirada" widgetVar="timeoutDialog" showEffect="fade" modal="true" width="400" height="100" closable="false"
-            draggable="false" resizable="false" appendToBody="true">
-            <p style="text-align: justify;">
-                <span class="ui-icon ui-icon-alert" style="float: left; margin: 5px 7px 50px 0;" /> A sua sessão expirou por medida de
-                segurança. Para utilizar novamente o sistema é necessário efetuar login.
-            </p>
-            <p:commandButton style="width:80px;margin-top: 15px;" value="OK" oncomplete="time_out_new_login()" />
-        </p:dialog>
-    </h:form>
+	<h:form>
+		<p:dialog header="Sessão expirada" widgetVar="timeoutDialog"
+			showEffect="fade" modal="true" width="400" height="100"
+			closable="false" draggable="false" resizable="false"
+			appendToBody="true">
+			<p style="text-align: justify;">
+				<span class="ui-icon ui-icon-alert"
+					style="float: left; margin: 5px 7px 50px 0;" /> A sua sessão
+				expirou por medida de segurança. Para utilizar novamente o sistema é
+				necessário efetuar login.
+			</p>
+			<p:commandButton style="width:80px;margin-top: 15px;" value="OK"
+				oncomplete="time_out_new_login()" />
+		</p:dialog>
+	</h:form>
 
 </ui:composition>
