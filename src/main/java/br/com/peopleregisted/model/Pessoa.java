@@ -7,7 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -18,7 +20,6 @@ public class Pessoa {
 	@Column(name = "id")
 	private Long id;
 
-	@NotBlank
 	@Column(name = "nome")
 	private String nome;
 
@@ -42,7 +43,6 @@ public class Pessoa {
 	private String cpf;
 
 	@Column(name = "data_cadastro")
-	@NotBlank
 	private Date dataCadastro;
 
 	@Column(name = "data_atualizacao")

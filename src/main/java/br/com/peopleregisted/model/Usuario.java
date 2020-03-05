@@ -1,18 +1,28 @@
 package br.com.peopleregisted.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private Integer id;
+	
+	@Column(name = "nome")
 	private String  nome;
+	
+	@Column(name = "senha")
 	private String senha;
+	
+	@Column(name = "papel")
 	private  String papel;
+	
 	public Integer getId() {
 		return id;
 	}
